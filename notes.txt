@@ -1,15 +1,22 @@
-import requests
-import pprint
-# {'closest': {'available': True, 'status': '200', 'timestamp': '20240517190543', 'url': 'http://web.archive.org/web/20240517190543/https://9gag.com/'}}
-# &timestamp=20060101
-response = requests.get('http://archive.org/wayback/available?url=http://9gag.com/&timestamp=201900602021852').json()
-print(response['url'])
-print(response)
-post_url = response['archived_snapshots']['closest']['url']
+# Snapshots von 2014 - 2024: 94532
+# Falls 2 Snapshots pro tag --> 365 * 2 = 730 Snapshots pro Jahr --> 7300 für 10 Jahre
+# gags per Page: 10 --> 945'320 posts
+# Per image cost:
+- 700px x 700px = $ 0.003825
+- Some Text (Title) = $ 0.00005
+#
 
+# Batch API -->  50% discount
 
-response = requests.get(post_url).content
-pprint.pprint(response)
+# Scraping: https://github.com/gurza/9gag.com-scraper
+# Example to get comments:
+#https://comment-cdn.9gag.com/v1/topComments.json?appId=a_dd8f2b7d304a10edaf6f29517ea0ca4100a43d1b&urls=http://9gag.com/gag/aNnDD66&commentL1=5&commentL2=5&pretty=0
+#https://comment-cdn.9gag.com/v1/topComments.json?appId=a_dd8f2b7d304a10edaf6f29517ea0ca4100a43d1b&urls=http://9gag.com/gag/aNnDD66
+
+# How to get nsfw unlogged in
+post-id --> aBYyBYN
+https://img-9gag-fun.9cache.com/photo/aBYyBYN_700bwp_v1.webp
+https://img-9gag-fun.9cache.com/photo/aGxymgG_700bwp.webp
 
 # https://archive.org/developers/tutorial-find-identifier-item.html
 
